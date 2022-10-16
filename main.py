@@ -16,9 +16,9 @@ def get_telegram_bot(token: str) -> None:
 
     @bot.message_handler(content_types=['voice'])
     def voice_processing(message):
-        file_id = bot.get_file(message.voice.file_id)
-        downloaded_file = bot.download_file(file_id.file_path)
-        text: str = get_text(downloaded_file)
+        fid = bot.get_file(message.voice.file_id)
+        audio_file = bot.download_file(fid.file_path)
+        text: str = get_text(audio_file)
         bot.reply_to(message, text)
 
     @bot.message_handler(content_types=['text'])
