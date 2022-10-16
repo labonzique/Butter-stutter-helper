@@ -10,7 +10,7 @@ def get_telegram_bot(token: str) -> None:
     @bot.message_handler(commands=['start'])
     def start_message(message):
         intro_msg: str = "Hi! I'm Stutter helper bot. " \
-                   "\nI help people with stutter to convert voice messegae to nice looking text!"
+                   "\nI help people with stutter to convert voice message to nice looking text!"
         bot.send_message(message.chat.id, intro_msg)
         bot.send_message(message.chat.id, "Please, send voice message")
 
