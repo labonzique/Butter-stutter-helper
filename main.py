@@ -1,6 +1,6 @@
 from auth import token
 import telebot
-from telebot import TeleBot
+from telebot import types, TeleBot
 import uuid
 import os
 from speech_to_text import get_text
@@ -19,17 +19,14 @@ def get_telegram_bot(token: str) -> TeleBot:
     @bot.message_handler(content_types=['voice'])
     def voice_processing(message):
         filename = str(uuid.uuid4())
-        file_name_full = "./unconv/" + filename + ".ogg"
-        file_name_full_converted = "./conv/" + filename + ".wav"
+        file_name_full = "unconv/" + filename + ".ogg"
         file_info = bot.get_file(message.voice.file_id)
         downloaded_file = bot.download_file(file_info.file_path)
         with open(file_name_full, 'wb') as new_file:
             new_file.write(downloaded_file)
-        os.system("ffmpeg -i " + file_name_full + " " + file_name_full_converted)
-        text: str = get_text(file_name_full_converted)
+        text: str = get_text(file_name_full)
         bot.reply_to(message, text)
         os.remove(file_name_full)
-        os.remove(file_name_full_converted)
 
     @bot.message_handler(content_types=['text'])
     def message_text_replier(message):
@@ -37,7 +34,6 @@ def get_telegram_bot(token: str) -> TeleBot:
         bot.send_message(message.chat.id, err_msg)
 
     bot.polling()
-    return bot
 
 
 if __name__ == '__main__':
