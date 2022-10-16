@@ -1,2 +1,2 @@
-token = "5675663766:AAFLzBziMXgPlwacbrG0EyP-UvC0A_-4DEo"
-url = "https://whisper2.lablab.ai/asr/"
+TELEGRAM_TOKEN = "5675663766:AAFLzBziMXgPlwacbrG0EyP-UvC0A_-4DEo"
+OPENAI_KEY = "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"

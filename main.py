@@ -1,7 +1,7 @@
-from auth import token
+from auth import TELEGRAM_TOKEN
 import telebot
 from telebot import TeleBot
-from speech_to_text import get_text
+from speech_to_text import get_text, get_answer
 
 
 def get_telegram_bot(token: str) -> None:
@@ -9,10 +9,11 @@ def get_telegram_bot(token: str) -> None:
 
     @bot.message_handler(commands=['start'])
     def start_message(message):
-        intro_msg: str = "Hi! I'm Stutter helper bot. " \
-                   "\nI help people with stutter to convert voice message to nice looking text!"
+        intro_msg: str = "Hello! I'm Butter 🧈✨" \
+                         "\nI help people with stutter." \
+                         "\nSend me a voice message and I will transcribe it.🪄✨" \
+                         "\nYou can also text me any question you have about stuttering.🤓📚"
         bot.send_message(message.chat.id, intro_msg)
-        bot.send_message(message.chat.id, "Please, send voice message")
 
     @bot.message_handler(content_types=['voice'])
     def voice_processing(message):
@@ -23,11 +24,13 @@ def get_telegram_bot(token: str) -> None:
 
     @bot.message_handler(content_types=['text'])
     def message_text_replier(message):
-        err_msg: str = "I don't understand text \nI can recognize voice only."
-        bot.send_message(message.chat.id, err_msg)
+        # err_msg: str = "I don't understand text \nI can recognize voice only."
+        # bot.send_message(message.chat.id, err_msg)
+        answer_msg: str = get_answer(message.text)
+        bot.reply_to(message, answer_msg)
 
     bot.polling()
 
 
 if __name__ == '__main__':
-    get_telegram_bot(token)
+    get_telegram_bot(TELEGRAM_TOKEN)
