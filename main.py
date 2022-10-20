@@ -10,8 +10,8 @@ def get_telegram_bot(token: str) -> None:
     @bot.message_handler(commands=['start'])
     def start_message(message):
         intro_msg: str = "Hello! I'm Butter 🧈✨" \
-                         "\nI help people with stutter." \
-                         "\nSend me a voice message and I will transcribe it.🪄✨" \
+                         "\nHelping people who stutter is my job." \
+                         "\nSend me a voice message, and I'll transcribe it.🪄✨" \
                          "\nYou can also text me any question you have about stuttering.🤓📚"
         bot.send_message(message.chat.id, intro_msg)
 
