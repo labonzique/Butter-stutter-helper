@@ -12,7 +12,10 @@ def get_telegram_bot(token: str) -> None:
         intro_msg: str = "Hello! I'm Butter 🧈✨" \
                          "\nHelping people who stutter is my job." \
                          "\nSend me a voice message, and I'll transcribe it.🪄✨" \
-                         "\nYou can also text me any question you have about stuttering.🤓📚"
+                         "\nYou can also text me any question you have about stuttering.🤓📚" \
+                         "\n" \
+                         "\n" \
+                         "To contact my creators: https://m.me/butterbot4u"
         bot.send_message(message.chat.id, intro_msg)
 
     @bot.message_handler(content_types=['voice'])
