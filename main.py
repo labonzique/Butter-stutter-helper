@@ -27,8 +27,6 @@ def get_telegram_bot(token: str) -> None:
 
     @bot.message_handler(content_types=['text'])
     def message_text_replier(message):
-        # err_msg: str = "I don't understand text \nI can recognize voice only."
-        # bot.send_message(message.chat.id, err_msg)
         answer_msg: str = get_answer(message.text)
         bot.reply_to(message, answer_msg)
 
